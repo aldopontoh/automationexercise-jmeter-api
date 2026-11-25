@@ -36,7 +36,7 @@ pipeline {
         stage('Verify Results & SLA Thresholds') {
             steps {
                 powershell '''
-                    & ".\scripts\verify-results.ps1" -JtlPath "results.jtl" -MaxDurationMs ([int]$env:SLA_MAX_DURATION_MS)
+                    & "./scripts/verify-results.ps1" -JtlPath "results.jtl" -MaxDurationMs ([int]$env:SLA_MAX_DURATION_MS)
                 '''
             }
         }
