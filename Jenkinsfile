@@ -29,7 +29,13 @@ pipeline {
 
         stage('Run JMeter Non-GUI API Suite') {
             steps {
-                bat 'jmeter -n -t plans/automationexercise-api-suite.jmx -l results.jtl -e -o report-html'
+                powershell '''
+                    $machinePath = [Environment]::GetEnvironmentVariable('Path', 'Machine')
+                    $userPath    = [Environment]::GetEnvironmentVariable('Path', 'User')
+                    $env:PATH    = "$machinePath;$userPath;$env:PATH"
+                    jmeter -n -t plans/automationexercise-api-suite.jmx -l results.jtl -e -o report-html
+                    if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
+                '''
             }
         }
 
