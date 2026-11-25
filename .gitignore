@@ -1,0 +1,13 @@
+# JMeter execution outputs & reports
+*.jtl
+report-html/
+jmeter.log
+smoke-results.jtl
+
+# Temporary run artifacts & OS noise
+*.log
+*.tmp
+.DS_Store
+Thumbs.db
+desktop.ini
+.playwright-mcp/
